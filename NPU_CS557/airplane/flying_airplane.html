@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TODO supply a title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .flipa{
+      -moz-transform:scale(-1,1);
+      -webkit-transform:scale(-1,1);
+      -o-transform:scale(-1,1);
+      transform:scale(-1,1);
+      filter:FlipH;
+    }
+  </style>
+  <script type="text/javascript">
+
+    var bottomPosition = 10;
+    var leftPosition = 0;
+    var topPosition = window.innerHeight;
+    var flag = 1;
+
+    function flyPlane() {
+
+      var airplane = document.getElementById("airplane");
+      airplane.style.left = leftPosition + "px";
+      airplane.style.top =  topPosition/2 + "px";
+      airplane.style.visibility = "visible";
+
+      if(flag == 1){
+        airplane.className = ''; 
+        leftPosition += 2
+        if (leftPosition >= window.innerWidth - 130 ) {
+          flag = -1
+        }
+      } else {
+        airplane.className = 'flipa'; 
+        leftPosition -= 2
+        if(leftPosition <= 0){
+          flag = 1;
+        }
+      }
+      
+    }
+  </script>
+</head>
+<body onload="setInterval('flyPlane()', 10);"> 
+  <p>
+    <img src="airplane.gif" id="airplane" style="position: absolute;left: -100px;bottom: 10px;visibility: hidden" alt="Image of a airplane" />
+  </p>
+
+
+</body>
+</html>
